@@ -1,0 +1,457 @@
+/**
+ * Base CSS - Variables, Resets, and Foundation
+ *
+ * Senior-friendly design system for Dental Rubio Group
+ * Optimized for accessibility (WCAG AAA) and readability
+ *
+ * @package DentalRubio
+ */
+
+/* ==========================================================================
+   CSS Custom Properties (Variables)
+   ========================================================================== */
+
+:root {
+    /* Brand Colors */
+    --navy: #1e3c72;
+    --navy-dark: #0f1f3d;
+    --navy-light: #3d5a99;
+    --gold: #c9a961;
+    --gold-dark: #8b7a4f;
+    --gold-light: #e0c98a;
+
+    /* Semantic Colors */
+    --success: #27ae60;
+    --success-light: #d4edda;
+    --warning: #f39c12;
+    --warning-light: #fff3cd;
+    --danger: #e74c3c;
+    --danger-light: #f8d7da;
+    --info: #3498db;
+    --info-light: #d1ecf1;
+
+    /* Text Colors */
+    --text-primary: #2c3e50;
+    --text-secondary: #5a6c7d;
+    --text-muted: #95a5a6;
+    --text-light: #ffffff;
+
+    /* Background Colors */
+    --bg-white: #ffffff;
+    --bg-light: #f8f9fa;
+    --bg-secondary: #ecf0f1;
+    --bg-dark: #2c3e50;
+
+    /* Border Colors */
+    --border-light: #ecf0f1;
+    --border-default: #dce0e3;
+    --border-dark: #bdc3c7;
+
+    /* Typography - Senior-Friendly (20px base) */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-size-xs: 16px;
+    --font-size-sm: 18px;
+    --font-size-base: 20px;
+    --font-size-lg: 24px;
+    --font-size-xl: 28px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 40px;
+    --font-size-4xl: 48px;
+    --font-size-5xl: 56px;
+
+    /* Line Heights */
+    --line-height-tight: 1.2;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.6;
+    --line-height-relaxed: 1.75;
+
+    /* Letter Spacing */
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: 0.01em;
+    --letter-spacing-wide: 0.05em;
+
+    /* Font Weights */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+
+    /* Dynamic Spacing */
+    --gutter: clamp(20px, 5vw, 40px);
+    --section-gap: clamp(60px, 10vw, 120px);
+
+    /* Border Radius */
+    --radius-sm: 2px;
+    --radius-default: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    --radius-2xl: 16px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-default: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-default: 300ms ease;
+    --transition-slow: 500ms ease;
+
+    /* Z-Index Scale */
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-fixed: 30;
+    --z-modal-backdrop: 40;
+    --z-modal: 50;
+    --z-popover: 60;
+    --z-tooltip: 70;
+
+    /* Container */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    --container-2xl: 1536px;
+
+    /* Touch Targets (Accessibility) */
+    --touch-target-min: 48px;
+    --button-min-height: 60px;
+    --input-min-height: 56px;
+}
+
+/* ==========================================================================
+   CSS Reset / Normalize
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Remove default list styles */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Prevent font size inflation on mobile */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    color: var(--text-primary);
+    background-color: var(--bg-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default margin from semantic elements */
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd {
+    margin-block-end: 0;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: var(--font-size-4xl);
+}
+
+h2 {
+    font-size: var(--font-size-3xl);
+}
+
+h3 {
+    font-size: var(--font-size-2xl);
+}
+
+h4 {
+    font-size: var(--font-size-xl);
+}
+
+h5 {
+    font-size: var(--font-size-lg);
+}
+
+h6 {
+    font-size: var(--font-size-base);
+}
+
+/* Links */
+a {
+    color: var(--navy);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--navy-dark);
+}
+
+a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+/* Images */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Inherit fonts for form elements */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+/* Remove default button styles */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Textarea defaults */
+textarea {
+    resize: vertical;
+}
+
+/* Table defaults */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+/* Remove animations for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ==========================================================================
+   Base Typography
+   ========================================================================== */
+
+/* Paragraph spacing */
+p {
+    margin-bottom: var(--space-4);
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* Strong/Bold */
+strong,
+b {
+    font-weight: var(--font-weight-bold);
+}
+
+/* Emphasis */
+em,
+i {
+    font-style: italic;
+}
+
+/* Small text */
+small {
+    font-size: var(--font-size-sm);
+}
+
+/* Blockquote */
+blockquote {
+    padding-left: var(--space-6);
+    border-left: 4px solid var(--gold);
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* Code */
+code,
+kbd,
+samp,
+pre {
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+    font-size: 0.9em;
+}
+
+code {
+    padding: var(--space-1) var(--space-2);
+    background-color: var(--bg-light);
+    border-radius: var(--radius-sm);
+}
+
+pre {
+    padding: var(--space-4);
+    background-color: var(--bg-light);
+    border-radius: var(--radius-default);
+    overflow-x: auto;
+}
+
+pre code {
+    padding: 0;
+    background-color: transparent;
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--border-light);
+    margin: var(--space-8) 0;
+}
+
+/* Selection */
+::selection {
+    background-color: var(--gold);
+    color: var(--navy-dark);
+}
+
+/* ==========================================================================
+   Focus States (Accessibility)
+   ========================================================================== */
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+/* Remove outline for mouse users */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Skip link for screen readers */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--navy);
+    color: var(--text-light);
+    padding: var(--space-2) var(--space-4);
+    z-index: 100;
+    transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ==========================================================================
+   Responsive Typography
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    :root {
+        --font-size-base: 18px;
+        --font-size-lg: 22px;
+        --font-size-xl: 26px;
+        --font-size-2xl: 28px;
+        --font-size-3xl: 32px;
+        --font-size-4xl: 40px;
+        --font-size-5xl: 48px;
+    }
+
+    h1 {
+        font-size: var(--font-size-3xl);
+    }
+
+    h2 {
+        font-size: var(--font-size-2xl);
+    }
+
+    h3 {
+        font-size: var(--font-size-xl);
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    *,
+    *::before,
+    *::after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+    }
+
+    img {
+        page-break-inside: avoid;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
