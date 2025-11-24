@@ -75,6 +75,7 @@ $dental_rubio_includes = array(
     '/inc/enqueue-scripts.php',          // Scripts and styles
     '/inc/performance-optimizations.php', // Performance optimizations
     '/inc/design-system.php',            // Design system helpers
+    '/inc/service-meta.php',             // Service custom fields and helpers
 );
 
 foreach ($dental_rubio_includes as $file) {
