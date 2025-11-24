@@ -76,6 +76,8 @@ $dental_rubio_includes = array(
     '/inc/performance-optimizations.php', // Performance optimizations
     '/inc/design-system.php',            // Design system helpers
     '/inc/service-meta.php',             // Service custom fields and helpers
+    '/inc/integrations/whatsapp-widget.php', // WhatsApp floating widget
+    '/inc/integrations/contact-handler.php', // Contact form handler
 );
 
 foreach ($dental_rubio_includes as $file) {
