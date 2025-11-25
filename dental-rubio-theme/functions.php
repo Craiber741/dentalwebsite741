@@ -78,6 +78,11 @@ $dental_rubio_includes = array(
     '/inc/service-meta.php',             // Service custom fields and helpers
     '/inc/integrations/whatsapp-widget.php', // WhatsApp floating widget
     '/inc/integrations/contact-handler.php', // Contact form handler
+    '/inc/tracking/google-tag-manager.php',  // Google Tag Manager integration
+    '/inc/tracking/facebook-pixel.php',      // Facebook Pixel tracking
+    '/inc/seo/schema-markup.php',            // Schema.org structured data
+    '/inc/seo/seo-optimization.php',         // SEO meta tags and optimization
+    '/inc/accessibility.php',                // WCAG 2.1 AA accessibility features
 );
 
 foreach ($dental_rubio_includes as $file) {

@@ -310,3 +310,122 @@ function dental_rubio_prevent_user_enumeration() {
     }
 }
 add_action('init', 'dental_rubio_prevent_user_enumeration');
+
+/**
+ * Remove WordPress emoji scripts (not needed for senior audience)
+ */
+function dental_rubio_disable_emojis() {
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+}
+add_action('init', 'dental_rubio_disable_emojis');
+
+/**
+ * Remove emoji DNS prefetch
+ */
+function dental_rubio_disable_emoji_dns_prefetch($urls, $relation_type) {
+    if ('dns-prefetch' == $relation_type) {
+        $emoji_svg_url = apply_filters('emoji_svg_url', 'https://s.w.org/images/core/emoji/');
+        $urls = array_diff($urls, array($emoji_svg_url));
+    }
+    return $urls;
+}
+add_filter('wp_resource_hints', 'dental_rubio_disable_emoji_dns_prefetch', 10, 2);
+
+/**
+ * Add loading="lazy" to iframes (for embedded videos)
+ */
+function dental_rubio_lazy_iframes($content) {
+    if (strpos($content, '<iframe') !== false && strpos($content, 'loading=') === false) {
+        $content = preg_replace(
+            '/<iframe([^>]*)>/i',
+            '<iframe loading="lazy"$1>',
+            $content
+        );
+    }
+    return $content;
+}
+add_filter('the_content', 'dental_rubio_lazy_iframes', 99);
+
+/**
+ * Defer non-critical JavaScript
+ */
+function dental_rubio_defer_scripts($tag, $handle, $src) {
+    // List of scripts that should be deferred
+    $defer_scripts = array(
+        'dental-rubio-navigation',
+        'dental-rubio-smooth-scroll',
+    );
+
+    // Don't defer jQuery or scripts in admin
+    if (is_admin() || strpos($handle, 'jquery') !== false) {
+        return $tag;
+    }
+
+    // Add defer to specific scripts
+    if (in_array($handle, $defer_scripts)) {
+        $tag = str_replace(' src', ' defer src', $tag);
+    }
+
+    return $tag;
+}
+add_filter('script_loader_tag', 'dental_rubio_defer_scripts', 10, 3);
+
+/**
+ * Remove unnecessary WordPress meta tags
+ */
+function dental_rubio_clean_header() {
+    remove_action('wp_head', 'wp_generator');
+    remove_action('wp_head', 'wlwmanifest_link');
+    remove_action('wp_head', 'rsd_link');
+    remove_action('wp_head', 'wp_shortlink_wp_head');
+    remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
+}
+add_action('init', 'dental_rubio_clean_header');
+
+/**
+ * Add critical CSS inline (for above-the-fold content)
+ */
+function dental_rubio_critical_css() {
+    // Only on homepage for now
+    if (!is_front_page()) {
+        return;
+    }
+    ?>
+    <style id="dental-rubio-critical">
+        /* Critical CSS for above-the-fold content */
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        .site-header { background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .hero-section { min-height: 500px; background: linear-gradient(135deg, #0A4D68 0%, #088395 100%); }
+        .btn-primary { background: #10b981; color: white; padding: 16px 32px; border-radius: 8px; font-size: 18px; }
+    </style>
+    <?php
+}
+add_action('wp_head', 'dental_rubio_critical_css', 1);
+
+/**
+ * Optimize image loading with modern formats hint
+ */
+function dental_rubio_add_image_hints() {
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+}
+add_action('wp_head', 'dental_rubio_add_image_hints', 1);
+
+/**
+ * Add security and performance headers
+ */
+function dental_rubio_security_headers() {
+    if (!is_admin()) {
+        header('X-Content-Type-Options: nosniff');
+        header('X-Frame-Options: SAMEORIGIN');
+        header('X-XSS-Protection: 1; mode=block');
+        header('Referrer-Policy: strict-origin-when-cross-origin');
+    }
+}
+add_action('send_headers', 'dental_rubio_security_headers');
