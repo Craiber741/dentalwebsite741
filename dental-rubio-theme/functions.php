@@ -77,6 +77,7 @@ $dental_rubio_includes = array(
     '/inc/design-system.php',            // Design system helpers
     '/inc/service-meta.php',             // Service custom fields and helpers
     '/inc/hub-functions.php',            // Hub page functions and meta boxes
+    '/inc/calculator-functions.php',     // Calculator helper functions and pricing
     '/inc/integrations/whatsapp-widget.php', // WhatsApp floating widget
     '/inc/integrations/contact-handler.php', // Contact form handler
     '/inc/tracking/google-tag-manager.php',  // Google Tag Manager integration
