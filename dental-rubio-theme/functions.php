@@ -78,6 +78,7 @@ $dental_rubio_includes = array(
     '/inc/service-meta.php',             // Service custom fields and helpers
     '/inc/hub-functions.php',            // Hub page functions and meta boxes
     '/inc/calculator-functions.php',     // Calculator helper functions and pricing
+    '/inc/setup-wizard.php',             // Theme setup wizard
     '/inc/integrations/whatsapp-widget.php',     // WhatsApp floating widget
     '/inc/integrations/contact-handler.php',     // Contact form handler
     '/inc/integrations/hubspot-integration.php', // HubSpot CRM integration
