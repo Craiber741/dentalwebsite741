@@ -78,13 +78,18 @@ $dental_rubio_includes = array(
     '/inc/service-meta.php',             // Service custom fields and helpers
     '/inc/hub-functions.php',            // Hub page functions and meta boxes
     '/inc/calculator-functions.php',     // Calculator helper functions and pricing
-    '/inc/integrations/whatsapp-widget.php', // WhatsApp floating widget
-    '/inc/integrations/contact-handler.php', // Contact form handler
-    '/inc/tracking/google-tag-manager.php',  // Google Tag Manager integration
-    '/inc/tracking/facebook-pixel.php',      // Facebook Pixel tracking
-    '/inc/seo/schema-markup.php',            // Schema.org structured data
-    '/inc/seo/seo-optimization.php',         // SEO meta tags and optimization
-    '/inc/accessibility.php',                // WCAG 2.1 AA accessibility features
+    '/inc/integrations/whatsapp-widget.php',     // WhatsApp floating widget
+    '/inc/integrations/contact-handler.php',     // Contact form handler
+    '/inc/integrations/hubspot-integration.php', // HubSpot CRM integration
+    '/inc/integrations/zapier-webhooks.php',     // Zapier webhook handlers
+    '/inc/integrations/email-automation.php',    // Email automation and sequences
+    '/inc/integrations/lead-tracking.php',       // Lead tracking and analytics
+    '/inc/integrations/crm-settings.php',        // CRM settings admin page
+    '/inc/tracking/google-tag-manager.php',      // Google Tag Manager integration
+    '/inc/tracking/facebook-pixel.php',          // Facebook Pixel tracking
+    '/inc/seo/schema-markup.php',                // Schema.org structured data
+    '/inc/seo/seo-optimization.php',             // SEO meta tags and optimization
+    '/inc/accessibility.php',                    // WCAG 2.1 AA accessibility features
 );
 
 foreach ($dental_rubio_includes as $file) {
